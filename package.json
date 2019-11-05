@@ -1,0 +1,19 @@
+{
+  "name": "mealandgo",
+  "version": "1.0.0",
+  "description": "meal app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "mealandgo"
+  },
+  "author": "nemanja-ma",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.41.2"
+  },
+  "dependencies": {}
+}
