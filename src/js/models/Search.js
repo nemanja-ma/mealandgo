@@ -1,0 +1,1 @@
+export default 'I am an eported string';
