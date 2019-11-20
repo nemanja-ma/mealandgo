@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container {
+    margin: 20px auto;
+    padding: 5px;
+    width: 480px;
+    border: 1px solid rgb(107, 107, 107);
+    border-radius: 10px;
+    grid: 0;
+    text-align: center;
+}
