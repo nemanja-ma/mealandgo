@@ -12,11 +12,11 @@ class Search {
         try {
             const res = await axios(`${proxy}https://api.spoonacular.com/recipes/search?apiKey=${key}&query=${this.query}&number=10`);
             this.result = res.data.results
-            //console.log(this.result);
+            console.log(this.results);
         } catch(error) {
             alert(error)
         }
     }
 }
 
-export default Search;
+export default Search; 

@@ -2,22 +2,32 @@ import {elements} from './base';
 
 export const getInput = () => elements.searchInput.value;
 
-const recnderRecepie = pecepie => {
+export const clearInput = () => {
+    elements.searchInput.value = '';
+};  
+
+export const clearResults = () => {
+    elements.searchResList.innerHTML = '';
+};
+
+const recnderRecipe = recipe => {
     const markup = `
     <li>
-        <a class="results_link results_link_active" href="#23456">
+        <a class="results_link" href="#${recipe.id}">
             <figure class="results_fig">
-                <img src="img/test1-1" alt="test">
+                <img src="${recipe.imageUrls}" alt="${recipe.title}">
             </figure>
             <div class="results_data">
-                <h4 class="results_name">Pasta with tomato...</h4>
-                <p class="results_author">The Pionir Woman</p>
+                <h4 class="results_name">${recipe.title}</h4>
+                <p class="results_minutes">${recipe.readyInMinutes} minutes takes to prepare</p>
             </div>
         </a>
     </li>
     `;
-}
+    elements.searchResList.insertAdjacentHTML('beforeend', markup);
+};
 
-cosnt renderResults = recepies => {
-    recepies.forEach(recnderRecepie);
-}
+export const renderResults = recipes => {
+    recipes.forEach(recnderRecipe);
+};
+

@@ -2,8 +2,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-size: 16px;
 }
-.container {
+.header {
     margin: 20px auto;
     padding: 5px;
     width: 480px;
@@ -11,4 +12,39 @@
     border-radius: 10px;
     grid: 0;
     text-align: center;
+}
+.results {
+    width: 480px;
+    margin: 20px auto;
+    padding: 5px;
+    border: 1px solid rgb(107, 107, 107);
+    display: block;
+}
+.result img {
+    height: 100px;
+    width: 100px;
+    border: 1px solid rgb(158, 157, 157);
+    
+}
+.result h4 {
+    font-size: 150%;
+    border: 1px solid rgb(158, 157, 157);
+    
+}
+.result_list {
+list-style: none;
+}
+.result p {
+    font-size: 100%;
+    border: 1px solid rgb(158, 157, 157);
+   
+}
+.results li {
+    width: 100%;
+}
+.results_data{
+    display: inline-block;
+}
+.results_fig{
+    display: inline-block;
 }
