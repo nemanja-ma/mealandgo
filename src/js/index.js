@@ -1,5 +1,6 @@
 import '../styles/app.css';
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import {elements, renderLoader, clearLoader} from './views/base';
 
@@ -47,3 +48,9 @@ if (btn) {
 }
 
 });
+
+///////// RECIPE CONTROLER ////////////
+
+const r = new Recipe(559251);
+r.getRecipe();
+console.log(r);
