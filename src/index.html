@@ -21,7 +21,7 @@
         </div>
         <form class="search">
             <input type="text" class="search_field" placeholder="Search...">
-            <button class="btn search_button">Search <i class="fa fa-search"></i></button>
+            <button class="btn search_button"><i class="fa fa-search"></i></button>
         </form>
         <div class="likes">
             <div class="likes_field">
@@ -86,6 +86,33 @@
                     </svg>
                 </button>
                 -->
+            </div>
+            
+            <div class="recipe">
+                <div class="recipe__details">
+                    <div class="recipe__info">
+                        <i class="fa fa-stopwatch"></i>
+                        <span class="recipe__info-data recipe__info-data--minutes">${recipe.time}</span>
+                        <span class="recipe__info-text"> minutes</span>
+                    </div>
+                    <div class="recipe__info">
+                        <i class="fa fa-male"></i>
+                        <span class="recipe__info-data recipe__info-data--people">${recipe.serving}</span>
+                        <span class="recipe__info-text"> servings</span>
+            
+                        <div class="recipe__info-buttons">
+                            <button class="btn-tiny">
+                                <i class="fa fa-minus-circle"></i>
+                            </button>
+                            <button class="btn-tiny">
+                            <i class="fa fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="recipe__love">
+                        <i class="fa fa-heart"></i>
+                    </button>
+                </div>
             </div>
         </div>
         </section>

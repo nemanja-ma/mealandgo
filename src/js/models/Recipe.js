@@ -22,4 +22,5 @@ export default class Recipe {
             alert(error);   
         }
     }
+ 
 }
