@@ -14,13 +14,22 @@ export default class Recipe {
             this.img=res.data.image;
             this.url=res.data.sourceUrl;
             this.ingredients=res.data.extendedIngredients;
-            this.instructions=res.data.instructions;
-            this.time=res.data.readyInMinutes
-            this.serving=res.data.servings
-            
+            this.time=res.data.readyInMinutes;
+            this.serving=res.data.servings;    
         } catch(error) {
-            alert(error);   
+            alert('cant get data');   
         }
     }
- 
+
+    updateServings (type) {
+        //servings
+        const newServings = type === 'dec' ? this.serving -1 : this.serving +1;
+
+        //ingredients
+
+        this.ingredients.forEach(ing => {
+            ing.amount *= (newServings/this.serving)
+        })
+        this.serving = newServings
+    }
 }
