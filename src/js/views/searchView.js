@@ -30,7 +30,7 @@ const limitRecipeTitle = title => {
 const renderRecipe = recipe => {
     const markap = `
     <li>
-        <a class="results__link" href="${recipe.id}">
+        <a class="results__link" href="#${recipe.id}">
             <figure class="results__fig">
                 <img src="https://spoonacular.com/recipeImages/${recipe.id}-90x90.jpg"} alt="${recipe.title}">
             </figure>
@@ -84,4 +84,13 @@ export const renderResults = (recipes, page = 1) => {
     //reneder pag. buttons
     renderButtons(page, recipes.length, 10);
 };
+
+export const highlightSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+}
+
 
