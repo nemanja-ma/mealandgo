@@ -3,6 +3,7 @@ import { elements, elementStrings, renderLoader, clearLoader} from './views/base
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import Recipe from './models/Recipe';
+import List from './models/List';
 
 const state = {};
 
@@ -18,7 +19,7 @@ const controlSearch = async () => {
         state.search = new Search(query);
 
         // prepare ui for results
-        searchView.clearInpu();
+        searchView.clearInpu(); 
         searchView.clearResults();
         renderLoader(elements.searchRes);
 
@@ -51,12 +52,12 @@ elements.searchResPages.addEventListener('click', e => {
 const constrolSearch = async () => {
     //get id from url
     const id = window.location.hash.replace('#', '');
-    console.log(id);
     
     if (id) {
             //prepare ui for changes
-            renderLoader(elements.recipe);
             recipeView.clearRecipe();
+            renderLoader(elements.recipe);
+            
 
             //highlight selected recipe
             if (state.recipe) {searchView.highlightSelected(id)};
@@ -70,7 +71,6 @@ const constrolSearch = async () => {
             //render recipe
             clearLoader();
             recipeView.renderRecipe(state.recipe);
-            console.log(state.recipe.ingredients);
         } catch(error) {
             console.log('cant process data');
         }    
@@ -82,10 +82,16 @@ const constrolSearch = async () => {
 //handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
     if (e.target.matches('.btn-decrease, .btn-decrease *')) {
-        state.recipe.updateServings('dec');
+        //decrese if button is clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngerdients(state.recipe);
+        }
     } else if (e.target.matches('.btn-increase, .btn-increase *')) {
         state.recipe.updateServings('inc')
+        recipeView.updateServingsIngerdients(state.recipe);
     }
-
-
 });
+
+
+window.l = new List();

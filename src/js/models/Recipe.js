@@ -15,7 +15,7 @@ export default class Recipe {
             this.url=res.data.sourceUrl;
             this.ingredients=res.data.extendedIngredients;
             this.time=res.data.readyInMinutes;
-            this.serving=res.data.servings;    
+            this.servings=res.data.servings;    
         } catch(error) {
             alert('cant get data');   
         }
@@ -23,13 +23,13 @@ export default class Recipe {
 
     updateServings (type) {
         //servings
-        const newServings = type === 'dec' ? this.serving -1 : this.serving +1;
+        const newServings = type === 'dec' ? this.servings -1 : this.servings +1;
 
         //ingredients
 
         this.ingredients.forEach(ing => {
-            ing.amount *= (newServings/this.serving)
+            ing.amount *= (newServings/this.servings)
         })
-        this.serving = newServings
+        this.servings = newServings
     }
 }
