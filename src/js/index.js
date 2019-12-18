@@ -3,8 +3,10 @@ import { elements, elementStrings, renderLoader, clearLoader} from './views/base
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
+import * as likesView from './views/likesView';
 import Recipe from './models/Recipe';
 import List from './models/List';
+import Likes from './models/Likes';
 
 const state = {};
 window.state = state;
@@ -72,7 +74,10 @@ const constrolSearch = async () => {
 
             //render recipe
             clearLoader();
-            recipeView.renderRecipe(state.recipe);
+            recipeView.renderRecipe(
+                state.recipe,
+                state.likes.isLiked(id)
+                );
         } catch(error) {
             console.log('cant process data');
         }    
@@ -97,10 +102,13 @@ elements.recipe.addEventListener('click', e => {
         // call for the controlList function
     } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')) {
         controlList();
+        // call for the controlLike function
+    } else if (e.target.matches('.recipe__love, .recipe__love *')) {
+        controlLike();
     }
 });
 
-/// RECIPE CONTOLER
+/// LIST CONTOLER
 
 const controlList = () => {
     //create a new list if there is non
@@ -135,4 +143,55 @@ elements.shopping.addEventListener('click', e=> {
     }
 });
 
-window.l = new List();
+/// LIKE CONTOLER
+
+
+
+const controlLike = () => {
+    if (!state.likes) state.likes = new Likes();
+    const currentID = state.recipe.id;
+    
+    //user has not yet liked new recipe
+    if(!state.likes.isLiked(currentID)) {
+        //add like to the state
+        const newLike = state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );    
+        console.log(state.likes.getNumLikes())    
+
+        //toggle the button
+        likesView.toggleLikeBtn(true);
+       
+        //add like to ui list
+        likesView.renderLike(newLike);
+
+    //user has liked new recipe
+    } else {
+        //remove like from the state
+        state.likes.deleteLike(currentID)
+        console.log(state.likes.getNumLikes())
+        //toggle the button
+        likesView.toggleLikeBtn(false);
+        
+        //remove like from ui list
+        likesView.deleteLike(currentID);
+    }
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+};
+   
+//resore liked recipes when the page loads
+window.addEventListener('load', e => {
+    state.likes = new Likes();
+
+    //read the local storage
+    state.likes.readStorage()
+
+    //togle the button
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    //render existing likes
+    state.likes.likes.forEach(like => likesView.renderLike(like))
+});
