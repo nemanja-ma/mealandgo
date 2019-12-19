@@ -9,8 +9,6 @@ import List from './models/List';
 import Likes from './models/Likes';
 
 const state = {};
-window.state = state;
-
 
 /// SEARCH CONTOLER
 
@@ -144,8 +142,6 @@ elements.shopping.addEventListener('click', e=> {
 });
 
 /// LIKE CONTOLER
-
-
 
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
